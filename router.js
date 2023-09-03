@@ -1,6 +1,6 @@
 require("dotenv").config()
 const express = require("express")
-const controller = require("../controller/controller")
+const controller = require("./controller/controller")
 const app = express();
 app.use(express.json())
 const router = express.Router();
@@ -18,7 +18,7 @@ app.use(cors({
 //   in responses, allowing requests from that specific origin.
 
 const path = require("path")
-app.use(express.static(path.join(__dirname, '../dist')))
+app.use(express.static(path.join(__dirname, '/dist')))
 
 // WE WROTE IT BECAUSE WHENEVER WE WRITE THE APPLICATION LEVEL ROUTE IT FIRST SEARCH
 // IN THE EXPRESS ROUTER IF IT GET IT THEN IT WILL EXECUTE IT BUT IF IT DOES NOT GET IT THEN IT WILL GIVE AN ERROR
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, '../dist')))
 app.use("/api", router);
 
 router.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'))
+    res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
     .get("/readProduct", controller.readProduct)
     .get("/products", controller.getProduct)
@@ -39,7 +39,7 @@ router.get("/", (req, res) => {
 
 
 app.use("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'))
+    res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 app.listen("3000", () => {
 
